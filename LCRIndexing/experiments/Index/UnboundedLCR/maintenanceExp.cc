@@ -39,6 +39,7 @@ LabelSet generateLabelSet(LabelSet& ls, int nK, int L, std::uniform_int_distribu
     std::uniform_int_distribution<int> distribution(0, L);*/
 
     int nL = getNumberOfLabelsInLabelSet(ls);
+    // Get the number of all the labels over the graph
 
     while(nL != nK)
     {
@@ -150,19 +151,19 @@ int main(int argc, char *argv[])
     std::default_random_engine generator2(seed);
     std::uniform_int_distribution<int> labelDistribution(0, L - 1);
 
-    /*// addition of edge
+    // addition of edge
     cout << "addition of edges" << endl;
     for(int i = 0; i < K; )
     {
-        VertexID s = vertexDistribution(generator); // a random vertex
-        VertexID t = vertexDistribution(generator); // a random vertex
-        LabelID l = labelDistribution(generator2);
+        VertexID s = vertexDistribution(generator); // a random vertex generated from the graph
+        VertexID t = vertexDistribution(generator); // a random vertex generated from the graph
+        LabelID l = labelDistribution(generator2); // a label constrain on the edges set
 
         if( dgc->hasEdge(s,t) == false )
         {
-            dgc->addEdge(s,t,l);
-            lI->addEdge(s,t,l);
-            i++;
+            dgc->addEdge(s, t, l);
+            lI->addEdge(s, t, l);
+            i ++;
         }
     }
 
@@ -170,7 +171,7 @@ int main(int argc, char *argv[])
     if( testIndices(lI, lI2, vertexDistribution, generator, L) == 1 )
     {
         return 1;
-    }*/
+    }
 
     // removal of edge
     cout << "removal of edges" << endl;

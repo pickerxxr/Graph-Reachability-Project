@@ -1,0 +1,22 @@
+# Label-constrained Rechability Query on Dynamic Graphs
+
+## Intro
+
+This is the implementation of **Label-constrained Rechability Query on Dynamic Graphs**, which is the experimental implementations of the final project of DATA130045.01.
+
+Created by Alan Liu from Fudan.
+
+## Usage
+
+### install the necessary packs (NECESSARY)
+
+```
+GNU gcc&g++
+boost
+Python 3.6 or higher version
+glog gflags
+```
+
+## Explaination
+
+### 

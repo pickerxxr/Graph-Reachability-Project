@@ -20,6 +20,17 @@ LabelID LabelSet
 {a , c , d} has a LabelSet with value 8 + 4 + 1 = 13
 */
 
+/**
+ * @file Graph.h
+ * @author (Edit by) Youzhe Liu 
+ * @brief 
+ * @version 0.1
+ * @date 2022-01-18
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <cstdlib>
 #include <sstream>
 #include <vector>

@@ -1,3 +1,14 @@
+/**
+ * @file maintenanceExp.cc
+ * @author Alan Liu (pickerxxr@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-01-18
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <cstdlib>
 #include <sstream>
 #include <vector>
@@ -123,29 +134,33 @@ int main(int argc, char *argv[])
     long dur = (finish-start).count();
     cout << dur << endl;
 
-    int N = dg->getNumberOfVertices();
-    int L = dg->getNumberOfLabels();
+    int N = dg->getNumberOfVertices();  // Numver of vertices, i.e. |V|
+    int L = dg->getNumberOfLabels();   // Number of labels, i.e. |L|
 
-    if( L < 3 || N < 100 )
-    {
-        cout << "L or N too small" << endl;
-        return 1;
-    }
+    // if( L < 3 || N < 100 )
+    // {
+    //     cout << "L or N too small" << endl;
+    //     return 1;
+    // }
 
     int K = 30;
     int Nc = N + K;
     int Lc = L + K;
 
     int k = N/50; int l = 0;
-    LandmarkedIndex* lI = new LandmarkedIndex(dg, k , 1, 0, true, l);
+    LandmarkedIndex* lI = new LandmarkedIndex(dg, k , 1, 0, true, l); // landmartk index structure setting
     LandmarkedIndex* lI2;
 
+
+    /* Get the changing time of the dynamic progress */
     double timelI = lI->getIndexConstructionTimeInSec();
     cout << "addEdge time(s)=" << timelI << endl;
 
+    /* Stats of the time spent */
     unsigned int seed = time(NULL)*time(NULL) % 1000;
     std::default_random_engine generator(seed);
     std::uniform_int_distribution<VertexID> vertexDistribution(0, N - 1);
+
 
     seed = (time(NULL)*time(NULL)*time(NULL)) % 1000;
     std::default_random_engine generator2(seed);
@@ -161,8 +176,8 @@ int main(int argc, char *argv[])
 
         if( dgc->hasEdge(s,t) == false )
         {
-            dgc->addEdge(s, t, l);
-            lI->addEdge(s, t, l);
+            dgc->addEdge(s, t, l);  // the (copy) of the graph --- add an edge randomly
+            lI->addEdge(s, t, l);  // index also add edge
             i ++;
         }
     }
@@ -184,10 +199,10 @@ int main(int argc, char *argv[])
         VertexID s = vertexDistribution(generator); // a random vertex
         VertexID t = vertexDistribution(generator); // a random vertex
 
-        if( dgc->hasEdge(s,t) == true )
+        if( dgc->hasEdge(s, t) == true )
         {
-            dgc->removeEdge(s,t);
-            lI->removeEdge(s,t,0);
+            dgc->removeEdge(s, t); // remove edge method can be found at ./Graph/DGraph.cc
+            lI->removeEdge(s, t, 0); // same for indexing
             i++;
         }
     }

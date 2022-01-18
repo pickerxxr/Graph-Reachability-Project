@@ -34,3 +34,5 @@ chmod a+x rebuild.sh
 ### Testing
 Since the codes are originally for evaluating the performances of different algorithms, it is not a full executable version.
 You can check the details directly, with detailed comments.
+
+### Details of implementation
